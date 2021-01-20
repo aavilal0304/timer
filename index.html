@@ -1,4 +1,43 @@
 <html>
-    <head></head>
-    <body>HOLA</body>
+
+<head></head>
+
+<body>
+    <h1>TIMER 1</h1>
+    <!--div id="clock" role="timer" aria-live="off">80</div-->
+    <span class="app-counter-wrapper urgency" id="bidCounter_itemEndDate">
+        <p id="wrapper" class="showInlineBlock" role="alert" aria-atomic="true" aria-live="off">
+            <span id="bidCounter_itemEndDate_label">Ends in </span>
+            <span id="bidCounter_itemEndDate_minute" class="hide">0</span>
+            <span id="bidCounter_itemEndDate_minuteText" class="hide">m </span>
+            <span id="clock" class="showInline">300</span>
+            <span id="bidCounter_itemEndDate_secondText" class="showInline">s </span>
+        </p>
+    </span>
+    <button onclick="startTimer('clock')">start</button>
+</body>
+<script>
+    function startTimer(timerName) {
+        // get the number of seconds
+        let timer = document.getElementById(timerName),
+            seconds = parseInt(timer.innerText);
+        // remove a second
+        // updated the content of timer
+        var secondsLeft = --seconds;
+        timer.innerText = secondsLeft
+        // if timer != 0, setTimeout
+        if (secondsLeft%20 == 0) {
+            var wrap = document.getElementById('wrapper');
+            wrap.setAttribute('aria-live', 'polite');
+        }
+        if (seconds) {
+            setTimeout(function () {
+                var wrap = document.getElementById('wrapper');
+                wrap.setAttribute('aria-live', 'off');
+                startTimer(timerName);
+            }, 1000);
+        }
+    }
+</script>
+
 </html>
