@@ -25,17 +25,17 @@
         <h3>Example 1: Countdown Status</h3>
         <p>Status will flash red and announce every ten seconds until time reaches 0.</p>
         <div class="timer">
-            <span>
-                <p class="countdown" role="timer" aria-live="off">
+            <p>
+                <span class="countdown" role="status" aria-live="off">
                     <!--span>Seconds Left: </span-->
                     <!--span class="countdown__secs">80</span-->
-                    <span>Ends in </span>
-                    <span class="hide">0</span>
-                    <span class="hide">m </span>
-                    <span class="countdown__secs">60</span>
-                    <span class="showInline">s </span>
-                </p>
-            </span>
+                    <!--span id="bidCounter_itemEndDate_label">Ends in </span>
+                    <span id="bidCounter_itemEndDate_minute" class="hide">0</span>
+                    <span id="bidCounter_itemEndDate_minuteText" class="hide">m </span-->
+                    <span id="bidCounter_itemEndDate_second" class="countdown__secs">100</span>
+                    <span id="bidCounter_itemEndDate_secondText" class="showInline">a </span>
+                </span>
+            </p>
         </div>
 
         <hr>
@@ -66,7 +66,7 @@
             }, timerIntervalMs);
 
             alertInterval = setInterval(function () {
-                countdownEl.setAttribute('aria-live', 'polite');
+                countdownEl.setAttribute('aria-live', 'assertive');
                 setTimeout(function () {
                     countdownEl.setAttribute('aria-live', 'off');
                 }, 1000);
