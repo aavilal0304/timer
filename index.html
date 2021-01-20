@@ -3,43 +3,74 @@
 <head></head>
 
 <body>
-    <h1>TIMER 2</h1>
-    <!--div id="clock" role="timer" aria-live="off">80</div-->
-    <div>
-        <span class="app-counter-wrapper urgency" id="bidCounter_itemEndDate">
-            <p id="wrapper" class="showInlineBlock" role="alert" aria-atomic="true" aria-live="off">
-                <span id="bidCounter_itemEndDate_label">Ends in </span>
-                <span id="bidCounter_itemEndDate_minute" class="hide">0</span>
-                <span id="bidCounter_itemEndDate_minuteText" class="hide">m </span>
-                <span id="clock" class="showInline">300</span>
-                <span id="bidCounter_itemEndDate_secondText" class="showInline">s </span>
+    <div id="main" role="main">
+        <div id="logo"><a href="http://www.ebay.com"><span role="img" aria-label="eBay"></span></a></div>
+        <style>
+            .countdown[role="status"][aria-live="polite"] {
+                color: #cc3300;
+            }
+        </style>
+
+        <h1>Time</h1>
+
+        <h2 class="clipped">Readme</h2>
+
+        <p>Please <a href="https://ebay.gitbook.io/mindpatterns//messaging/time.html">read the documentation</a> to
+            understand how these examples were created.</p>
+
+        <hr>
+
+        <h2 class="clipped">Examples</h2>
+
+        <h3>Example 1: Countdown Status</h3>
+        <p>Status will flash red and announce every ten seconds until time reaches 0.</p>
+        <div class="timer">
+            <p>
+                <span class="countdown" role="status" aria-live="off">
+                    <span>Seconds Left: </span>
+                    <span class="countdown__secs">80</span>
+                </span>
             </p>
-        </span>
-    </div>
-    <button onclick="startTimer('clock')">start</button>
-</body>
-<script>
-    function startTimer(timerName) {
-        // get the number of seconds
-        let timer = document.getElementById(timerName),
-            seconds = parseInt(timer.innerText);
-        // remove a second
-        // updated the content of timer
-        var secondsLeft = --seconds;
-        timer.innerText = secondsLeft
-        // if timer != 0, setTimeout
-        if (secondsLeft%20 == 0) {
-            var wrap = document.getElementById('wrapper');
-            wrap.setAttribute('aria-live', 'polite');
-        }
-        if (seconds) {
+        </div>
+
+        <hr>
+
+        <p><i>Updated</i>: May 25th, 2019</p>
+
+        <script>
+            var alertIntervalMs = 10000;
+            var timerIntervalMs = 1000;
+            var countdownEl = document.querySelector('.countdown');
+            var secondsEl = document.querySelector('.countdown__secs');
+            var timerInterval
+            var alertInterval;
+
             setTimeout(function () {
-                var wrap = document.getElementById('wrapper');
-                wrap.setAttribute('aria-live', 'off');
-                startTimer(timerName);
+                countdownEl.setAttribute('aria-live', 'off');
             }, 1000);
-        }
-    }
-</script>
+
+            timerInterval = setInterval(function () {
+                var seconds = parseInt(secondsEl.innerText, 10);
+
+                if (seconds === 0) {
+                    clearInterval(timerInterval);
+                    clearInterval(alertInterval);
+                } else {
+                    secondsEl.innerText = --seconds
+                }
+            }, timerIntervalMs);
+
+            alertInterval = setInterval(function () {
+                countdownEl.setAttribute('aria-live', 'polite');
+                setTimeout(function () {
+                    countdownEl.setAttribute('aria-live', 'off');
+                }, 1000);
+            }, alertIntervalMs);
+        </script>
+
+
+    </div>
+</body>
+
 
 </html>
