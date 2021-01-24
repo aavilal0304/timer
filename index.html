@@ -59,6 +59,7 @@
             var timerIntervalMs = 1000;
             var countdownEl = document.querySelector('.countdown');
             var secondsEl = document.querySelector('.countdown__secs');
+            var minsEl = document.querySelector('.hidex');
             var timerInterval
             var alertInterval;
             //var timeGlobal = 59;
@@ -76,6 +77,7 @@
                     timeGlobal = --seconds;
                     //secondsEl.innerText = 'Ends in 20m ' + timeGlobal + 's';
                     secondsEl.innerText = --seconds
+                    minsEl.innerText = seconds * 2;
                 }
             }, timerIntervalMs);
 
