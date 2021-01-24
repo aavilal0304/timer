@@ -41,11 +41,11 @@
                 <p class="countdown" role="timer" aria-live="off">
                     <!--span>Seconds Left: </span-->
                     <!--span class="countdown__secs">80</span-->
-                    <!--span>Ends in </span>
+                    <span>Ends in </span>
                     <span class="hide">10</span>
-                    <span class="hide">m </span-->
+                    <span class="hide">m </span>
                     <span aria-label="0 minutes, 2 seconds" class="countdown__secs">59</span>
-                    <!--span class="showInline">s </span-->
+                    <span class="showInline">s </span>
                 </p>
             </span>
         </div>
@@ -61,21 +61,21 @@
             var secondsEl = document.querySelector('.countdown__secs');
             var timerInterval
             var alertInterval;
-            var timeGlobal = 59;
+            //var timeGlobal = 59;
             setTimeout(function () {
                 countdownEl.setAttribute('aria-live', 'off');
             }, 1000);
 
             timerInterval = setInterval(function () {
-                //var seconds = parseInt(secondsEl.innerText, 10);
-                var seconds = timeGlobal;
+                var seconds = parseInt(secondsEl.innerText, 10);
+                //var seconds = timeGlobal;
                 if (seconds === 0) {
                     clearInterval(timerInterval);
                     clearInterval(alertInterval);
                 } else {
                     timeGlobal = --seconds;
-                    secondsEl.innerText = 'Ends in 20m ' + timeGlobal + 's';
-                    //secondsEl.innerText = --seconds
+                    //secondsEl.innerText = 'Ends in 20m ' + timeGlobal + 's';
+                    secondsEl.innerText = --seconds
                 }
             }, timerIntervalMs);
 
