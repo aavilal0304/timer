@@ -82,7 +82,8 @@
             }, timerIntervalMs);
 
             alertInterval = setInterval(function () {
-                countdownEl.setAttribute('aria-live', 'assertive');
+                countdownEl.setAttribute('', 'Ends in 25 minutes ' + secondsEl.innerText + ' seconds');
+                countdownEl.setAttribute('aria-live', 'polite');
                 setTimeout(function () {
                     countdownEl.setAttribute('aria-live', 'off');
                 }, 1000);
